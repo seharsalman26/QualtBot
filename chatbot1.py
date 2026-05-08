@@ -10,6 +10,7 @@ dynamic_prompt = st.query_params.get("prompt", "You are a helpful assistant.")
 provider = st.query_params.get("provider", "google").lower()
 selected_model = st.query_params.get("model", "gemini-3.1-flash-lite-preview")
 initial_msg = st.query_params.get("initial_msg", "Hello! How can I help you today?")
+max_turns = int(st.query_params.get("max_turns", 10))
 
 # 2. UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
@@ -20,8 +21,21 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+
+# 2. Count how many messages the USER has sent
+user_messages_count = len([m for m in st.session_state.messages if m["role"] == "user"])
+
+# 3. Check if limit is reached
+if user_messages_count >= max_turns:
+    st.warning("You have reached the message limit for this chat.")
+    # We will pass 'disabled=True' to the chat_input below
+    chat_input_disabled = True
+else:
+    chat_input_disabled = False
+
+
 # 3. THE CHAT INPUT
-if prompt := st.chat_input("Type your message here..."):
+if prompt := st.chat_input("Type your message here...", disabled=chat_input_disabled):
     # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
