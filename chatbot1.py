@@ -44,9 +44,14 @@ if prompt:
                 
                 response = client.chat.completions.create(
                     model=selected_model,
-                    messages=messages_for_api
+                    messages=messages_for_api,
+                    stream=TRUE,
                 )
-                bot_reply = response.choices[0].message.content
+
+                for response in response:
+                if response.choices[0].delta.content:
+                    bot_reply += response.choices[0].delta.content
+                    response_placeholder.markdown(bot_reply + "▌") # Adds a cursor
 
             # ==========================================
             # PATH B: GOOGLE (Gemini)
@@ -70,5 +75,5 @@ if prompt:
                 bot_reply = response.text
             
             # Display and save the final reply, regardless of which API generated it
-            st.markdown(bot_reply)
+            response_placeholder.markdown(bot_reply)
             st.session_state.messages.append({"role": "assistant", "content": bot_reply})
