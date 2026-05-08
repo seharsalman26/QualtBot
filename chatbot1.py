@@ -48,10 +48,10 @@ if prompt:
                     stream=TRUE,
                 )
 
-                for response in response:
-                if response.choices[0].delta.content:
-                    bot_reply += response.choices[0].delta.content
-                    response_placeholder.markdown(bot_reply + "▌") # Adds a cursor
+                for chunk in response:
+                    if chunk.choices[0].delta.content:
+                        bot_reply += chunk.choices[0].delta.content
+                        response_placeholder.markdown(bot_reply + "▌") # Adds a cursor
 
             # ==========================================
             # PATH B: GOOGLE (Gemini)
