@@ -10,14 +10,14 @@ st.write("Hello! I am here to help answer any questions you have.")
 # 🌟 NEW: THE CUSTOM PROMPT (SYSTEM INSTRUCTION)
 # ==========================================
 # Change this text to dictate the bot's rules, tone, and knowledge.
-CUSTOM_PROMPT = """
-You are a helpful, polite, and professional survey assistant. 
-Your job is to help participants understand how to fill out their survey.
-Rules:
-1. Keep your answers brief, usually 2-3 sentences.
-2. If a user asks a question unrelated to the survey, politely decline to answer and guide them back to the survey.
-3. Always maintain a warm, encouraging tone.
-"""
+
+
+# 1. READ THE PROMPT FROM THE URL
+# If Qualtrics doesn't send a prompt, it defaults to the second string.
+dynamic_prompt = st.query_params.get(
+    "prompt", 
+    "You are a generic helpful assistant. Keep answers short."
+)
 
 # 2. Configure the Gemini API securely
 # Streamlit looks for the API key in its hidden Secrets manager
@@ -28,7 +28,7 @@ genai.configure(api_key=api_key)
 # We pass the CUSTOM_PROMPT into the 'system_instruction' parameter
 model = genai.GenerativeModel(
     model_name='gemini-3.1-flash-lite-preview',
-    system_instruction=CUSTOM_PROMPT
+    system_instruction=dynamic_prompt
 )
 
 # 4. Set up the Chat Session in Streamlit Memory
