@@ -28,48 +28,50 @@ if prompt := st.chat_input("Type your message here..."):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        # We use a placeholder to update the text as it streams in
-        response_placeholder = st.empty()
-        full_response = ""
+        # Add Thinking... spinnder
+        with st.spinner("Thinking..."):
+            # We use a placeholder to update the text as it streams in
+            response_placeholder = st.empty()
+            full_response = ""
         
-        # ==========================================
-        # PATH A: OPENAI (with Streaming)
-        # ==========================================
-        if provider == "openai":
-            client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-            messages_for_api = [{"role": "system", "content": dynamic_prompt}] + st.session_state.messages
-            
-            stream = client.chat.completions.create(
-                model=selected_model,
-                messages=messages_for_api,
-                stream=True, # Enables streaming
-            )
-            for chunk in stream:
-                if chunk.choices[0].delta.content:
-                    full_response += chunk.choices[0].delta.content
-                    response_placeholder.markdown(full_response + "▌") # Adds a cursor
+            # ==========================================
+            # PATH A: OPENAI (with Streaming)
+            # ==========================================
+            if provider == "openai":
+                client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+                messages_for_api = [{"role": "system", "content": dynamic_prompt}] + st.session_state.messages
+                
+                stream = client.chat.completions.create(
+                    model=selected_model,
+                    messages=messages_for_api,
+                    stream=True, # Enables streaming
+                )
+                for chunk in stream:
+                    if chunk.choices[0].delta.content:
+                        full_response += chunk.choices[0].delta.content
+                        response_placeholder.markdown(full_response + "▌") # Adds a cursor
 
-        # ==========================================
-        # PATH B: GOOGLE (with Streaming)
-        # ==========================================
-        elif provider == "google":
-            genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-            gemini_model = genai.GenerativeModel(
-                model_name=selected_model,
-                system_instruction=dynamic_prompt
-            )
-            
-            gemini_history = []
-            for msg in st.session_state.messages[:-1]: 
-                role = "user" if msg["role"] == "user" else "model"
-                gemini_history.append({"role": role, "parts": [msg["content"]]})
-            
-            chat_session = gemini_model.start_chat(history=gemini_history)
-            response = chat_session.send_message(prompt, stream=True) # Enables streaming
-            
-            for chunk in response:
-                full_response += chunk.text
-                response_placeholder.markdown(full_response + "▌")
+            # ==========================================
+            # PATH B: GOOGLE (with Streaming)
+            # ==========================================
+            elif provider == "google":
+                genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+                gemini_model = genai.GenerativeModel(
+                    model_name=selected_model,
+                    system_instruction=dynamic_prompt
+                )
+                
+                gemini_history = []
+                for msg in st.session_state.messages[:-1]: 
+                    role = "user" if msg["role"] == "user" else "model"
+                    gemini_history.append({"role": role, "parts": [msg["content"]]})
+                
+                chat_session = gemini_model.start_chat(history=gemini_history)
+                response = chat_session.send_message(prompt, stream=True) # Enables streaming
+                
+                for chunk in response:
+                    full_response += chunk.text
+                    response_placeholder.markdown(full_response + "▌")
 
         # Final update to remove the cursor
         response_placeholder.markdown(full_response)
