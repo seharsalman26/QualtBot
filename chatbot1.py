@@ -6,6 +6,20 @@ import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Qualtrics Chatbot", page_icon="💬")
 
+
+
+# Hide Streamlit's default menu and footer
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
+
 # 1. READ PARAMETERS FROM THE URL
 dynamic_prompt = st.query_params.get("prompt", "You are a helpful assistant.")
 # Default to Google/Gemini if Qualtrics doesn't specify
