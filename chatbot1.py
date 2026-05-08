@@ -9,10 +9,11 @@ dynamic_prompt = st.query_params.get("prompt", "You are a helpful assistant.")
 # Default to Google/Gemini if Qualtrics doesn't specify
 provider = st.query_params.get("provider", "google").lower()
 selected_model = st.query_params.get("model", "gemini-3.1-flash-lite-preview")
+initial_msg = st.query_params.get("initial_msg", "Hello! How can I help you today?")
 
 # 2. UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [{"role": "assistant", "content": initial_msg}]
 
 # Display existing chat history
 for msg in st.session_state.messages:
