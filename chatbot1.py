@@ -106,5 +106,5 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
                 }}, "*");
             </script>
             """,
-            height=0, # Keeps it invisible
+            height=1, # Keeps it invisible
 )
