@@ -1,6 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
 from openai import OpenAI
+import json
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Qualtrics Chatbot", page_icon="💬")
 
@@ -27,7 +29,7 @@ user_messages_count = len([m for m in st.session_state.messages if m["role"] == 
 
 # 3. Check if limit is reached
 if user_messages_count >= max_turns:
-    st.warning("You have reached the message limit for this chat.")
+    # st.warning("This part of the convers") is you want to add a warning, we can do that here
     # We will pass 'disabled=True' to the chat_input below
     chat_input_disabled = True
 else:
@@ -90,3 +92,19 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         # Final update to remove the cursor
         response_placeholder.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+        # Convert chat history to a single string
+        history_str = json.dumps(st.session_state.messages)
+
+        # This hidden JavaScript sends the data back to Qualtrics
+        components.html(
+            f"""
+            <script>
+                window.parent.postMessage({{
+                    type: 'chat_export',
+                    history: {history_str}
+                }}, "*");
+            </script>
+            """,
+            height=0, # Keeps it invisible
+)
