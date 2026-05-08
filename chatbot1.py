@@ -27,7 +27,7 @@ genai.configure(api_key=api_key)
 # 3. Initialize the Gemini Model WITH the custom prompt
 # We pass the CUSTOM_PROMPT into the 'system_instruction' parameter
 model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
+    model_name='gemini-3.1-flash-lite-preview',
     system_instruction=CUSTOM_PROMPT
 )
 
