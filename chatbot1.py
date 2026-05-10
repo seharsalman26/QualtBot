@@ -70,7 +70,7 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
     with st.chat_message("user", avatar=user_icon): 
         st.markdown(prompt)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=bot_icon):
         # Add Thinking... spinnder
         with st.spinner("Thinking..."):
             # We use a placeholder to update the text as it streams in
