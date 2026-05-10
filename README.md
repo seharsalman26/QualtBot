@@ -15,7 +15,7 @@ If you use this tool in your research, please cite this repository using the fol
   year = {2026},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{[https://github.com/markjwarner/chatbot](https://github.com/markjwarner/QualtBot)}}
+  howpublished = {\url{[https://github.com/markjwarner/QualtBot](https://github.com/markjwarner/QualtBot)}}
 }
 ```
 
