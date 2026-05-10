@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+}
+
+/* 1. The Wrapper now controls the size and the centering */
+.wrapper {
+  position: relative; /* This traps the absolute positioned footer inside */
+  width: 70vw;        /* Matches your old iframe width */
+  height: 70vh;       /* Matches your old iframe height */
+  margin: 0 auto;     /* Centers the whole block perfectly */
+  z-index: 1;
+}
+
+/* 2. The Iframe just fills up 100% of the wrapper */
+iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* 3. The Footer Blocker perfectly overlaps the bottom of the wrapper */
+.hidefooter {
+  position: absolute;
+  bottom: 0;          /* Sticks it to the very bottom of the wrapper */
+  left: 0;            /* Sticks it to the left edge of the wrapper */
+  width: 100%;        /* Makes it span the exact width of the iframe */
+  height: 35px;
+  background: rgb(255,255,255,255);
+  z-index: 2;
+}
+
+/* 4. Mobile Styles */
+@media (max-width: 768px) {
+  .wrapper {
+    width: 90vw;      /* On mobile, expand the wrapper to 90vw */
+    height: 90vh;
+  }
+  
+  /* You don't even need to write media queries for the iframe 
+     or .hidefooter anymore! Because they are set to 100% width, 
+     they will automatically stretch to fill the new 90vw wrapper. */
+}
