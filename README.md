@@ -19,8 +19,8 @@ If you use this tool in your research, please cite this repository using the fol
 }
 ```
 
-# 🤖 How to Embed an AI Chatbot into Your Qualtrics Survey
-To ensure participant privacy and keep your API keys secure, you will create your own private copy of QualBot, link your own API keys to it, and embed that private app directly into your survey. Participants will never see your keys, and all chat transcripts will be automatically saved to your Qualtrics dataset.
+# 🤖 How to Embed QualtBot into Your Qualtrics Survey
+To ensure participant privacy and keep your API keys secure, you will create your own private copy of QualBot app using Steamlit, link your own API keys to it, and embed that private app directly into your survey. Participants will never see your keys, and all chat transcripts will be automatically saved to your Qualtrics dataset.
 
 ## Phase 1: Deploy Your Chatbot on Streamlit
 Streamlit (https://streamlit.io) is a free cloud platform for hosting Python web apps. You need to use it to host your specific instance of QualBot.
