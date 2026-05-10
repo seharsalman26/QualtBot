@@ -114,7 +114,7 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         components.html(
             f"""
             <script>
-                window.parent.postMessage({{
+                window.parent.parent.postMessage({{
                     type: 'chat_export',
                     history: {history_str}
                 }}, "*");
