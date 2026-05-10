@@ -5,7 +5,7 @@ QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, w
 
 If you use this tool in your research, please cite this repository using the following ACM format:
 
-> Mark Warner. 2026. *QualtBot: A Qualtrics Chatbot*. GitHub. Retrieved from https://github.com/markjwarner/chatbot
+> Mark Warner. 2026. *QualtBot: A Qualtrics Chatbot*. GitHub. Retrieved from https://github.com/markjwarner/QualtBot
 
 **BibTeX:**
 ```bibtex
@@ -15,7 +15,7 @@ If you use this tool in your research, please cite this repository using the fol
   year = {2026},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{[https://github.com/markjwarner/chatbot](https://github.com/markjwarner/chatbot)}}
+  howpublished = {\url{[https://github.com/markjwarner/chatbot](https://github.com/markjwarner/QualtBot)}}
 }
 ```
 
@@ -38,7 +38,7 @@ Once logged into Streamlit, click the New app button.
 If asked how to deploy, select Use existing repo.
 
 In the Repository URL field, paste this exact link:
-https://github.com/markjwarner/chatbot
+https://github.com/markjwarner/QualtBot
 
 Leave the "Branch" as main and "Main file path" as app.py.
 
