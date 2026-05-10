@@ -4,6 +4,10 @@ from openai import OpenAI
 import json
 import streamlit.components.v1 as components
 
+# Generate a unique timestamp so Streamlit is FORCED to re-render the HTML block
+import time
+refresh_key = time.time()
+
 st.set_page_config(page_title="Qualtrics Chatbot", page_icon="💬")
 
 
@@ -114,11 +118,19 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         components.html(
             f"""
             <script>
-                window.parent.parent.postMessage({{
-                    type: 'chat_export',
-                    history: {history_str}
-                }}, "*");
+                // Unique run ID: {refresh_key}
+                console.log("STREAMLIT: Attempting to send chat history to Qualtrics...", {history_str});
+                
+                try {{
+                    window.parent.parent.postMessage({{
+                        type: 'chat_export',
+                        history: {history_str}
+                    }}, "*");
+                    console.log("STREAMLIT: Message successfully fired off!");
+                }} catch(e) {{
+                    console.error("STREAMLIT: Error firing message:", e);
+                }}
             </script>
             """,
-            height=1, # Keeps it invisible
-)
+            height=2 # Changed from 0 to 2 to prevent browser throttling
+        )
