@@ -53,10 +53,10 @@ Click on Advanced settings... at the bottom of the deployment screen.
 In the Secrets text box, paste your API key using the following format:
 
 #### Use this for OpenAI (ChatGPT) models
-`OPENAI_API_KEY = "sk-your-openai-api-key-here"`
+`OPENAI_API_KEY = "your-openai-api-key-here"`
 
 #### Use this for Google (Gemini) models
-`GEMINI_API_KEY = "AIzaSy-your-gemini-api-key-here"`
+`GEMINI_API_KEY = "your-gemini-api-key-here"`
 
 Click Save, then click Deploy.
 
