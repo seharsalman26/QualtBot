@@ -122,7 +122,7 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
                 console.log("STREAMLIT: Attempting to send chat history to Qualtrics...", {history_str});
                 
                 try {{
-                    window.parent.parent.postMessage({{
+                    window.top.postMessage({{
                         type: 'chat_export',
                         history: {history_str}
                     }}, "*");
