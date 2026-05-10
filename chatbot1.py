@@ -43,7 +43,7 @@ for msg in st.session_state.messages:
     if msg["role"] == "user":
         avatar_icon = user_icon # Uses the Qualtrics URL
     else:
-        avatar_icon = "🤖" # Keep the bot as a hardcoded emoji, or make a bot_icon variable too!
+        avatar_icon = bot_icon # Keep the bot as a hardcoded emoji, or make a bot_icon variable too!
         
     with st.chat_message(msg["role"], avatar=avatar_icon):
         st.markdown(msg["content"])
