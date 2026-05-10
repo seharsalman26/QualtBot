@@ -114,23 +114,30 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         # Convert chat history to a single string
         history_str = json.dumps(st.session_state.messages)
 
-        # This hidden JavaScript sends the data back to Qualtrics
-        components.html(
-            f"""
-            <script>
-                // Unique run ID: {refresh_key}
-                console.log("STREAMLIT: Attempting to send chat history to Qualtrics...", {history_str});
-                
-                try {{
-                    window.top.postMessage({{
-                        type: 'chat_export',
-                        history: {history_str}
-                    }}, "*");
-                    console.log("STREAMLIT: Message successfully fired off!");
-                }} catch(e) {{
-                    console.error("STREAMLIT: Error firing message:", e);
-                }}
-            </script>
-            """,
-            height=2 # Changed from 0 to 2 to prevent browser throttling
-        )
+# This hidden JavaScript sends the data back to Qualtrics
+components.html(
+    f"""
+    <script>
+        // Unique run ID: {refresh_key}
+        console.log("STREAMLIT: Broadcasting chat history...");
+        
+        var payload = {history_str};
+        
+        try {{
+            // Fire the message up the chain to EVERY parent window
+            var currentWindow = window.parent;
+            while (currentWindow !== window.top) {{
+                currentWindow.postMessage({{ type: 'chat_export', history: payload }}, "*");
+                currentWindow = currentWindow.parent;
+            }}
+            // Hit the absolute top window just in case
+            window.top.postMessage({{ type: 'chat_export', history: payload }}, "*");
+            
+            console.log("STREAMLIT: Broadcast complete.");
+        }} catch(e) {{
+            console.error("STREAMLIT: Error broadcasting:", e);
+        }}
+    </script>
+    """,
+    height=2 
+)
