@@ -31,6 +31,8 @@ provider = st.query_params.get("provider", "google").lower()
 selected_model = st.query_params.get("model", "gemini-3.1-flash-lite-preview")
 initial_msg = st.query_params.get("initial_msg", "Hello! How can I help you today?")
 max_turns = int(st.query_params.get("max_turns", 10))
+user_icon = st.query_params.get("user_icon", "👤")
+bot_icon = st.query_params.get("bot_icon", "🤖")
 
 # 2. UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
@@ -38,7 +40,12 @@ if "messages" not in st.session_state:
 
 # Display existing chat history
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
+    if msg["role"] == "user":
+        avatar_icon = user_icon # Uses the Qualtrics URL
+    else:
+        avatar_icon = "🧠" # Keep the bot as a hardcoded emoji, or make a bot_icon variable too!
+        
+    with st.chat_message(msg["role"], avatar=avatar_icon):
         st.markdown(msg["content"])
 
 
@@ -58,7 +65,9 @@ else:
 if prompt := st.chat_input("Type your message here...", disabled=chat_input_disabled):
     # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    
+    # Use the dynamic variable here too
+    with st.chat_message("user", avatar=user_icon): 
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
