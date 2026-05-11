@@ -11,7 +11,8 @@ import streamlit as st
 import google.generativeai as genai
 from openai import OpenAI
 import json
-import streamlit.components.v1 as components
+#  import streamlit.components.v1 as components removed as depreciated
+import streamlit as st
 
 # Generate a unique timestamp so Streamlit is FORCED to re-render the HTML block
 import time
@@ -133,11 +134,10 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         history_str = json.dumps(st.session_state.messages)
 
         # This hidden JavaScript sends the data back to Qualtrics
-        components.html(
-            f"""
+        js_payload = f"""
             <script>
                 // Unique run ID: {refresh_key}
-                console.log("STREAMLIT: Broadcasting chat history...");
+                console.log("STREAMLIT: Broadcasting chat history via st.iframe...");
                 
                 var payload = {history_str};
                 
@@ -156,6 +156,11 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
                     console.error("STREAMLIT: Error broadcasting:", e);
                 }}
             </script>
-            """,
-            height=2 
+        """
+
+        # st.iframe executes the bridge
+        # We use the 'data:text/html' prefix to make the JS string a valid URL
+        st.iframe(
+            src=f"data:text/html;charset=utf-8,{js_payload}",
+            height=0 # Keep it invisible
         )
