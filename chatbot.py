@@ -69,8 +69,8 @@ st.markdown(f"""
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
         color: {text_colour} !important;
-        border-radius: 20px;
-        padding: 12px 20px !important; /* Vertical 12px, Horizontal 20px */
+        border-radius: 30px;
+        padding: 12px 30px !important; /* Vertical 12px, Horizontal 20px */
         display: flex !important;
         align-items: center !important; /* Vertically centres the content */
         min-height: 44px !important;
@@ -80,8 +80,8 @@ st.markdown(f"""
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
         color: {text_colour} !important;
-        border-radius: 20px;
-        padding: 12px 20px !important;
+        border-radius: 30px;
+        padding: 12px 30px !important;
         display: flex !important;
         align-items: center !important;
         min-height: 44px !important;
@@ -92,7 +92,7 @@ st.markdown(f"""
         color: {text_colour} !important;
         margin: 0px !important;
         padding: 0px !important;
-        line-height: 1.5 !important; /* Improves readability and vertical feel */
+        line-height: 1.0 !important; /* Improves readability and vertical feel */
         width: 100%;
     }}
     
