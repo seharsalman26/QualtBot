@@ -53,40 +53,24 @@ text_colour = st.query_params.get("theme.textColor", "#000000")
 # Inject CSS to force these colors into the UI
 st.markdown(f"""
     <style>
-    /* 1. Set the main background */
+    /* Main App Background */
     .stApp {{
         background-color: {bg_colour} !important;
     }}
 
-    /* 2. Style EVERY chat bubble with a basic look first */
+    /* The Chat Container */
     [data-testid="stChatMessage"] {{
-        background-color: transparent !important;
         color: {text_colour} !important;
-        padding: 5px 0px !important;
     }}
 
-    /* 3. Target the text containers directly */
-    div[data-testid="stChatMessageContent"] {{
-        border-radius: 15px !important;
-        padding: 10px 15px !important;
-        width: fit-content !important;
-        max-width: 85% !important;
-    }}
-
-    /* 4. Apply the specific colours */
+    /* TARGETING THE USER (The "Human" icon messages) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
-        background-color: {bot_colour} !important;
-    }}
-
-    div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
     }}
 
-    /* 5. Force the text to stay centred and clean */
-    [data-testid="stMarkdownContainer"] p {{
-        margin: 0 !important;
-        line-height: 1.4 !important;
-        display: inline-block !important;
+    /* TARGETING THE BOT (The "Assistant" icon messages) */
+        div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
+        background-color: {bot_colour} !important;
     }}
     </style>
     """, unsafe_allow_html=True)
