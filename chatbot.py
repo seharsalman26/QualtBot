@@ -44,11 +44,23 @@ max_turns = int(st.query_params.get("max_turns", 10))
 user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
 
-# Theme colours sent from qualtrics
+# You only need the app background and text colour now
 bg_colour = st.query_params.get("theme.backgroundColor", "#FFFFFF")
-user_colour = st.query_params.get("theme.primaryColor", "#F0F0F0")
-bot_colour = st.query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
 text_colour = st.query_params.get("theme.textColor", "#000000")
+
+# Minimal CSS just for the main app background
+st.markdown(f"""
+    <style>
+    .stApp {{
+        background-color: {bg_colour} !important;
+        color: {text_colour} !important;
+    }}
+    /* Keep the input text readable */
+    input {{
+        color: {text_colour} !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
 
 
 # UNIFIED CHAT HISTORY
