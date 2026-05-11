@@ -50,54 +50,6 @@ user_colour = st.query_params.get("theme.primaryColor", "#F0F0F0")
 bot_colour = st.query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
 text_colour = st.query_params.get("theme.textColor", "#000000")
 
-# Inject CSS to force these colors into the UI
-st.markdown(f"""
-    <style>
-    /* 1. Set the main background of the app */
-    .stApp {{
-        background-color: {bg_colour} !important;
-    }}
-
-    /* 2. Target the OUTER container for the BOT */
-    [data-testid="stChatMessage"]:has([aria-label="Chat message from assistant"]) {{
-        background-color: {bot_colour} !important;
-        border-radius: 15px !important;
-        margin-bottom: 30px !important;
-        padding: 10px !important;
-    }}
-
-    /* 3. Target the OUTER container for the USER */
-    [data-testid="stChatMessage"]:has([aria-label="Chat message from user"]) {{
-        background-color: {user_colour} !important;
-        border-radius: 15px !important;
-        margin-bottom: 30px !important;
-        padding: 10px !important;
-    }}
-
-    /* 4. Make all inner containers transparent so the outer colour shows through */
-    div[data-testid="stChatMessageContent"], 
-    div[data-testid="stVerticalBlock"], 
-    div[data-testid="stMarkdownContainer"] {{
-        background-color: transparent !important;
-        border: none !important;
-    }}
-
-    /* 5. Clean up the text alignment and colour */
-    [data-testid="stMarkdownContainer"] p {{
-        color: {text_colour} !important;
-        margin: 0 !important;
-        line-height: 1.4 !important;
-    }}
-
-    /* 6. Ensure the avatar/icon is vertically centred with the text */
-    .st-emotion-cache-1dgsum0 {{
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 1.2rem !important;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
 
 # UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
