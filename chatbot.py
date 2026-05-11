@@ -44,24 +44,6 @@ max_turns = int(st.query_params.get("max_turns", 10))
 user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
 
-# You only need the app background and text colour now
-bg_colour = st.query_params.get("theme.backgroundColor", "#FFFFFF")
-text_colour = st.query_params.get("theme.textColor", "#000000")
-
-# Minimal CSS just for the main app background
-st.markdown(f"""
-    <style>
-    .stApp {{
-        background-color: {bg_colour} !important;
-        color: {text_colour} !important;
-    }}
-    /* Keep the input text readable */
-    input {{
-        color: {text_colour} !important;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-
 
 # UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
