@@ -62,16 +62,16 @@ st.markdown(f"""
     [data-testid="stChatMessage"]:has([aria-label="Chat message from assistant"]) {{
         background-color: {bot_colour} !important;
         border-radius: 15px !important;
-        margin-bottom: 20px !important;
-        padding: 20px !important;
+        margin-bottom: 30px !important;
+        padding: 10px !important;
     }}
 
     /* 3. Target the OUTER container for the USER */
     [data-testid="stChatMessage"]:has([aria-label="Chat message from user"]) {{
         background-color: {user_colour} !important;
         border-radius: 15px !important;
-        margin-bottom: 20px !important;
-        padding: 20px !important;
+        margin-bottom: 30px !important;
+        padding: 10px !important;
     }}
 
     /* 4. Make all inner containers transparent so the outer colour shows through */
