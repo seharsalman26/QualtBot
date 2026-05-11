@@ -58,39 +58,51 @@ st.markdown(f"""
         background-color: {bg_colour} !important;
     }}
 
-    /* 1. Remove the default Streamlit background-colour from the outer chat row */
+    /* 1. Remove the default outer background */
     [data-testid="stChatMessage"] {{
         background-color: transparent !important;
+        /* Ensure the whole row is vertically centred */
+        align-items: center !important; 
     }}
 
     /* 2. Target the Bot Bubble (Assistant) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
         color: {text_colour} !important;
-        border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 5px;
+        border-radius: 20px;
+        padding: 12px 20px !important; /* Vertical 12px, Horizontal 20px */
+        display: flex !important;
+        align-items: center !important; /* Vertically centres the content */
+        min-height: 44px !important;
     }}
 
     /* 3. Target the User Bubble */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
         color: {text_colour} !important;
-        border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 5px;
+        border-radius: 20px;
+        padding: 12px 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 44px !important;
     }}
 
-    /* 4. Ensure the paragraph text inside also respects the text_colour */
+    /* 4. Fix the text alignment inside the bubbles */
     div[data-testid="stChatMessageContent"] p {{
         color: {text_colour} !important;
-        margin-bottom: 0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        line-height: 1.5 !important; /* Improves readability and vertical feel */
+        width: 100%;
     }}
     
-    /* 5. Clean up the avatar backgrounds */
+    /* 5. Clean up avatar alignment */
     [data-testid="stChatMessageAvatarUser"], 
     [data-testid="stChatMessageAvatarAssistant"] {{
         background-color: transparent !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }}
     </style>
     """, unsafe_allow_html=True)
