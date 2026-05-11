@@ -1,6 +1,9 @@
 # QualtBot: A Qualtrics Chatbot
 QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, with the conversation being saved as part of the survey. The chatbot can be customised based on study needs. It currently uses Google Gemini or OpenAI models. If there are elements that you are unable to customise that you need to, please contact me (https://profiles.ucl.ac.uk/57936-mark-warner). Here is a complete, step-by-step tutorial. It guides you through deploying your own secure instance of your QualBot and integrating it seamlessly into Qualtrics.
 
+## ⚠️ Streamlit app sleep
+Please note that Streamlit puts apps to sleep after inactivity for 24 hours (weekday), or 72 hours (Saturday through Monday). If you are running a study, ensure that the app is awake prior to study start. 
+
 ## 📝 Citation
 
 If you use this tool in your research, please cite this repository using the below:
@@ -52,10 +55,10 @@ Click on Advanced settings... at the bottom of the deployment screen.
 
 In the Secrets text box, paste your API key using the following format:
 
-#### Use this for OpenAI (ChatGPT) models
+#### Use this for OpenAI (ChatGPT) models (see: https://developers.openai.com/api/docs/quickstart)
 `OPENAI_API_KEY = "your-openai-api-key-here"`
 
-#### Use this for Google (Gemini) models
+#### Use this for Google (Gemini) models (see: https://ai.google.dev/gemini-api/docs/api-key)
 `GEMINI_API_KEY = "your-gemini-api-key-here"`
 
 Click Save, then click Deploy.
