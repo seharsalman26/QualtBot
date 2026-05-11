@@ -58,51 +58,48 @@ st.markdown(f"""
         background-color: {bg_colour} !important;
     }}
 
-    /* 1. Remove the default outer background */
+    /* 1. Remove default row background */
     [data-testid="stChatMessage"] {{
         background-color: transparent !important;
-        /* Ensure the whole row is vertically centred */
-        align-items: center !important; 
     }}
 
-    /* 2. Target the Bot Bubble (Assistant) */
+    /* 2. Style the Assistant Bubble */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
         color: {text_colour} !important;
-        border-radius: 30px;
-        padding: 12px 30px !important; /* Vertical 12px, Horizontal 20px */
-        display: flex !important;
-        align-items: center !important; /* Vertically centres the content */
-        min-height: 44px !important;
+        border-radius: 18px !important;
+        /* Padding: Top/Bottom 10px, Left/Right 16px */
+        padding: 10px 16px !important; 
+        margin-left: 5px !important;
+        width: fit-content !important;
+        max-width: 85% !important;
     }}
 
-    /* 3. Target the User Bubble */
+    /* 3. Style the User Bubble */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
         color: {text_colour} !important;
-        border-radius: 30px;
-        padding: 12px 30px !important;
-        display: flex !important;
-        align-items: center !important;
-        min-height: 44px !important;
+        border-radius: 18px !important;
+        padding: 10px 16px !important;
+        margin-left: 5px !important;
+        width: fit-content !important;
+        max-width: 85% !important;
     }}
 
-    /* 4. Fix the text alignment inside the bubbles */
+    /* 4. Fix text alignment and wrapping */
     div[data-testid="stChatMessageContent"] p {{
         color: {text_colour} !important;
-        margin: 0px !important;
-        padding: 0px !important;
-        line-height: 1.0 !important; /* Improves readability and vertical feel */
-        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.4 !important;
+        /* This prevents text from hitting the very bottom */
+        word-wrap: break-word !important;
     }}
     
-    /* 5. Clean up avatar alignment */
+    /* 5. Mobile Adjustments: Ensure the avatars and bubbles sit nicely */
     [data-testid="stChatMessageAvatarUser"], 
     [data-testid="stChatMessageAvatarAssistant"] {{
         background-color: transparent !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
     }}
     </style>
     """, unsafe_allow_html=True)
