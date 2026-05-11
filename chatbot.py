@@ -55,25 +55,24 @@ st.markdown(f"""
     <style>
     /* Main App Background */
     .stApp {{
-        background-color: {bg_color};
-        color: {text_color};
+        background-color: {bg_color} !important;
     }}
-    
-    /* User Message Bubbles (Primary Color) */
-    [data-testid="stChatMessage"]:nth-child(even) {{
-        background-color: {user_bubble};
-        color: {text_color};
-    }}
-    
-    /* Bot Message Bubbles (Secondary Background Color) */
-    [data-testid="stChatMessage"]:nth-child(odd) {{
-        background-color: {bot_bubble};
-        color: {text_color};
-    }}
-    
-    /* Input box text color */
-    input {{
+
+    /* The Chat Container */
+    [data-testid="stChatMessage"] {{
         color: {text_color} !important;
+    }}
+
+    /* TARGETING THE USER (The "Human" icon messages) */
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]),
+    [data-testid="stChatMessage"][aria-label="Chat message from user"] {{
+        background-color: {user_color} !important;
+    }}
+
+    /* TARGETING THE BOT (The "Assistant" icon messages) */
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]),
+    [data-testid="stChatMessage"][aria-label="Chat message from assistant"] {{
+        background-color: {bot_color} !important;
     }}
     </style>
     """, unsafe_allow_html=True)
