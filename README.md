@@ -63,7 +63,9 @@ Click Save, then click Deploy.
 Wait 1-2 minutes for the app to build. Once it loads, look at the URL bar in your browser. Copy your new app's URL (it will look something like https://your-custom-name.streamlit.app). Keep this handy for Phase 2!
 
 ## Phase 2: Add the Qualtrics Integration Code
-The easiest way to setup your qualtrics integration is to use and the edit the provided template: `QualtBot_template.qsf'. If you prefer to set it up manually, you can follow the below steps. 
+The easiest way to setup your qualtrics integration is to use and the edit the provided template: `QualtBot_template.qsf'. If you prefer to set it up manually, you can follow the below steps.
+
+To use the template, create a new blank survey. Then, select Tools > Import/Export > Import Survey > Choose File > `QualtBot_template.qsf'
 
 ### Step 1: Add Custom CSS (Styling)
 
