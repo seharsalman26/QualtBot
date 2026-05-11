@@ -53,64 +53,48 @@ text_colour = st.query_params.get("theme.textColor", "#000000")
 # Inject CSS to force these colors into the UI
 st.markdown(f"""
     <style>
-    /* 1. Main Background */
+    /* 1. Set the main background of the app */
     .stApp {{
         background-color: {bg_colour} !important;
     }}
 
-    /* 2. Style the OUTER row */
-    [data-testid="stChatMessage"] {{
-        border-radius: 20px !important;
-        margin-bottom: 12px !important;
-        /* Balanced padding: 12px top/bottom, 16px sides */
-        padding: 12px 16px !important; 
-        display: flex !important;
-        align-items: center !important; 
-    }}
-
+    /* 2. Target the OUTER container for the BOT */
     [data-testid="stChatMessage"]:has([aria-label="Chat message from assistant"]) {{
         background-color: {bot_colour} !important;
+        border-radius: 15px !important;
+        margin-bottom: 10px !important;
+        padding: 10px !important;
     }}
 
+    /* 3. Target the OUTER container for the USER */
     [data-testid="stChatMessage"]:has([aria-label="Chat message from user"]) {{
         background-color: {user_colour} !important;
+        border-radius: 15px !important;
+        margin-bottom: 10px !important;
+        padding: 10px !important;
     }}
 
-    /* 3. THE FIX: Neutralise all internal Streamlit 'ghost' spacing */
-    div[data-testid="stChatMessageContent"] {{
-        padding: 0px !important;
-        margin: 0px 0px 0px 12px !important; /* Gap after the icon */
-        flex-grow: 1;
-    }}
-
-    /* Target the specific block that Streamlit uses to wrap text */
+    /* 4. Make all inner containers transparent so the outer colour shows through */
+    div[data-testid="stChatMessageContent"], 
     div[data-testid="stVerticalBlock"], 
-    div[data-testid="stElementContainer"] {{
-        gap: 0px !important;
-        margin: 0px !important;
-        padding: 0px !important;
+    div[data-testid="stMarkdownContainer"] {{
+        background-color: transparent !important;
+        border: none !important;
     }}
 
-    /* 4. Ensure the Markdown container doesn't have its own top margin */
-    .stMarkdown {{
-        margin-top: 0px !important;
-        display: flex;
-        align-items: center;
-    }}
-
-    div[data-testid="stMarkdownContainer"] p {{
+    /* 5. Clean up the text alignment and colour */
+    [data-testid="stMarkdownContainer"] p {{
         color: {text_colour} !important;
         margin: 0 !important;
-        padding: 0 !important;
-        /* Line height 1.4 is standard for readability */
-        line-height: 1.4 !important; 
+        line-height: 1.4 !important;
     }}
 
-    /* 5. Align the icon container */
+    /* 6. Ensure the avatar/icon is vertically centred with the text */
     .st-emotion-cache-1dgsum0 {{
         display: flex !important;
         align-items: center !important;
-        margin: 0 !important;
+        justify-content: center !important;
+        font-size: 1.2rem !important;
     }}
     </style>
     """, unsafe_allow_html=True)
