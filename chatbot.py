@@ -45,34 +45,34 @@ user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
 
 # Theme colours sent from qualtrics
-bg_color = st.query_params.get("theme.backgroundColor", "#FFFFFF")
-user_bubble = st.query_params.get("theme.primaryColor", "#F0F0F0")
-bot_bubble = st.query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
-text_color = st.query_params.get("theme.textColor", "#000000")
+bg_colour = st.query_params.get("theme.backgroundColor", "#FFFFFF")
+user_colour = st.query_params.get("theme.primaryColor", "#F0F0F0")
+bot_colour = st.query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
+text_colour = st.query_params.get("theme.textColor", "#000000")
 
 # Inject CSS to force these colors into the UI
 st.markdown(f"""
     <style>
     /* Main App Background */
     .stApp {{
-        background-color: {bg_color} !important;
+        background-color: {bg_colour} !important;
     }}
 
     /* The Chat Container */
     [data-testid="stChatMessage"] {{
-        color: {text_color} !important;
+        color: {text_colour} !important;
     }}
 
     /* TARGETING THE USER (The "Human" icon messages) */
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]),
     [data-testid="stChatMessage"][aria-label="Chat message from user"] {{
-        background-color: {user_color} !important;
+        background-color: {user_colour} !important;
     }}
 
     /* TARGETING THE BOT (The "Assistant" icon messages) */
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]),
     [data-testid="stChatMessage"][aria-label="Chat message from assistant"] {{
-        background-color: {bot_color} !important;
+        background-color: {bot_colour} !important;
     }}
     </style>
     """, unsafe_allow_html=True)
