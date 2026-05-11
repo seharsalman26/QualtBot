@@ -62,25 +62,12 @@ Click Save, then click Deploy.
 
 Wait 1-2 minutes for the app to build. Once it loads, look at the URL bar in your browser. Copy your new app's URL (it will look something like https://your-custom-name.streamlit.app). Keep this handy for Phase 2!
 
-## Phase 2: Prepare Your Qualtrics Survey Flow
-Before we add the code, we must give Qualtrics a place to save the exported chat data.
-
-Open your Qualtrics project and click on Survey Flow (the flowchart icon on the left).
-
-Click Add a New Element Here at the very top of your flow, and select Embedded Data.
-
-Name the field exactly: `chat_history`
-
-Leave the value blank ("Value will be set from Panel or URL").
-
-Crucial: Ensure this Embedded Data block sits above the block where your chatbot will appear.
-
-## Phase 3: Add the Qualtrics Integration Code
-Now we will embed the chatbot into a specific survey question. The easiest way to do this, is to use the provided template: `chatbotTemplate.q
+## Phase 2: Add the Qualtrics Integration Code
+The easiest way to setup your qualtrics integration is to use and the edit the provided template: `QualtBot_template.qsf'. If you prefer to set it up manually, you can follow the below steps. 
 
 ### Step 1: Add Custom CSS (Styling)
 
-This ensures the chatbot fits nicely on desktop and mobile screens and hides any unwanted borders.
+To ensure the chatbot fits nicely on desktop and mobile screens and hides any unwanted borders, we must setup the style. 
 
 Go to the Look and Feel menu (the paint roller icon).
 
@@ -88,13 +75,17 @@ Click on Style, then scroll down to Custom CSS. Paste the content of `chatbotSty
 
 ### Step 2: Add the JavaScript
 
-Create a new Text/Graphic question in your survey block. This will act as the container for your chatbot.
+Create a new 'Text Entry' question in your survey block and set the Text Type to 'Multiple lines'. This will act as the container for your chatbot and will be used to save the chat history.
 
 Click the JavaScript icon (</>) under the question behavior menu.
 
-Delete any default code in the window and paste the script within `chatbot.py`.
+Delete any default code (all of it) in the window and paste the script within `chatbot.py`.
 
-Update the configuration variables at the top of the script (especially the baseUrl) to customize your bot.
+Update the configuration variables at the top of the script (especially the baseUrl) to customise QualtBot.
+
+### Step 3: Add the Embedded Variables
+
+Create a set of embedded variables within the Survey Flow. Please use the configuration cheat sheet below to help you develop these. 
 
 # ⚙️ Configuration Cheat Sheet
 
