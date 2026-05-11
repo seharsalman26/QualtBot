@@ -44,7 +44,41 @@ max_turns = int(st.query_params.get("max_turns", 10))
 user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
 
-# 2. UNIFIED CHAT HISTORY
+# Theme colours sent from qualtrics
+bg_color = query_params.get("theme.backgroundColor", "#FFFFFF")
+user_bubble = query_params.get("theme.primaryColor", "#F0F0F0")
+bot_bubble = query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
+text_color = query_params.get("theme.textColor", "#000000")
+
+# Inject CSS to force these colors into the UI
+st.markdown(f"""
+    <style>
+    /* Main App Background */
+    .stApp {{
+        background-color: {bg_color};
+        color: {text_color};
+    }}
+    
+    /* User Message Bubbles (Primary Color) */
+    [data-testid="stChatMessage"]:nth-child(even) {{
+        background-color: {user_bubble};
+        color: {text_color};
+    }}
+    
+    /* Bot Message Bubbles (Secondary Background Color) */
+    [data-testid="stChatMessage"]:nth-child(odd) {{
+        background-color: {bot_bubble};
+        color: {text_color};
+    }}
+    
+    /* Input box text color */
+    input {{
+        color: {text_color} !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+# UNIFIED CHAT HISTORY
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": initial_msg}]
 
@@ -59,10 +93,10 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 
-# 2. Count how many messages the USER has sent
+# Count how many messages the USER has sent
 user_messages_count = len([m for m in st.session_state.messages if m["role"] == "user"])
 
-# 3. Check if limit is reached
+# Check if limit is reached
 if user_messages_count >= max_turns:
     # st.warning("This part of the convers") is you want to add a warning, we can do that here
     # We will pass 'disabled=True' to the chat_input below
@@ -71,7 +105,7 @@ else:
     chat_input_disabled = False
 
 
-# 3. THE CHAT INPUT
+# THE CHAT INPUT
 if prompt := st.chat_input("Type your message here...", disabled=chat_input_disabled):
     # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
