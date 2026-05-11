@@ -45,10 +45,10 @@ user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
 
 # Theme colours sent from qualtrics
-bg_color = query_params.get("theme.backgroundColor", "#FFFFFF")
-user_bubble = query_params.get("theme.primaryColor", "#F0F0F0")
-bot_bubble = query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
-text_color = query_params.get("theme.textColor", "#000000")
+bg_color = st.query_params.get("theme.backgroundColor", "#FFFFFF")
+user_bubble = st.query_params.get("theme.primaryColor", "#F0F0F0")
+bot_bubble = st.query_params.get("theme.secondaryBackgroundColor", "#FFD6D6")
+text_color = st.query_params.get("theme.textColor", "#000000")
 
 # Inject CSS to force these colors into the UI
 st.markdown(f"""
