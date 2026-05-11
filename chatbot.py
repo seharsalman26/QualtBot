@@ -65,7 +65,7 @@ st.markdown(f"""
 
     /* TARGETING THE USER (The "Human" icon messages) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
-        background-color: {bot_color} !important;
+        background-color: {bot_colour} !important;
         color: {text_color} !important;
         border-radius: 10px;
         padding: 10px;
@@ -74,7 +74,7 @@ st.markdown(f"""
 
     /* TARGETING THE BOT (The "Assistant" icon messages) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
-        background-color: {user_color} !important;
+        background-color: {user_colour} !important;
         color: {text_color} !important;
         border-radius: 10px;
         padding: 10px;
