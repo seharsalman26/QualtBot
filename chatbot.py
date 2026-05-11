@@ -196,5 +196,5 @@ if prompt := st.chat_input("Type your message here...", disabled=chat_input_disa
         # We use the 'data:text/html' prefix to make the JS string a valid URL
         st.iframe(
             src=f"data:text/html;charset=utf-8,{js_payload}",
-            height=0 # Keep it invisible
+            height=1 # Keep it invisible
         )
