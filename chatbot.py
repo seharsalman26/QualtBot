@@ -53,29 +53,27 @@ text_colour = st.query_params.get("theme.textColor", "#000000")
 # Inject CSS to force these colors into the UI
 st.markdown(f"""
     <style>
-    /* Main App Background */
+    /* 1. Set the main background */
     .stApp {{
         background-color: {bg_colour} !important;
     }}
 
-    /* 1. Reset the outer container */
+    /* 2. Style EVERY chat bubble with a basic look first */
     [data-testid="stChatMessage"] {{
         background-color: transparent !important;
-        padding-top: 0.5rem !important;
-        padding-bottom: 0.5rem !important;
+        color: {text_colour} !important;
+        padding: 5px 0px !important;
     }}
 
-    /* 2. Target the Chat Bubbles (Both Bot and User) */
+    /* 3. Target the text containers directly */
     div[data-testid="stChatMessageContent"] {{
-        background-color: transparent !important; /* Reset child background */
-        border-radius: 20px !important;
-        padding: 12px 18px !important;
+        border-radius: 15px !important;
+        padding: 10px 15px !important;
         width: fit-content !important;
         max-width: 85% !important;
-        margin-left: 0px !important;
     }}
 
-    /* Apply specific colours based on the label */
+    /* 4. Apply the specific colours */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
     }}
@@ -84,28 +82,11 @@ st.markdown(f"""
         background-color: {user_colour} !important;
     }}
 
-    /* 3. CRITICAL: Remove internal Streamlit spacing that pushes text down */
-    div[data-testid="stVerticalBlock"] {{
-        gap: 0px !important;
-    }}
-    
-    div[data-testid="stElementContainer"] {{
-        margin-bottom: 0px !important;
-    }}
-
-    /* 4. Ensure the text is properly anchored */
-    div[data-testid="stChatMessageContent"] p {{
-        color: {text_colour} !important;
+    /* 5. Force the text to stay centred and clean */
+    [data-testid="stMarkdownContainer"] p {{
         margin: 0 !important;
-        padding: 0 !important;
         line-height: 1.4 !important;
-        font-size: 1rem !important;
-    }}
-
-    /* 5. Keep avatars aligned with the top of the bubble */
-    [data-testid="stChatMessageAvatarUser"], 
-    [data-testid="stChatMessageAvatarAssistant"] {{
-        margin-top: 5px !important;
+        display: inline-block !important;
     }}
     </style>
     """, unsafe_allow_html=True)
