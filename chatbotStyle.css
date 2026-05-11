@@ -1,3 +1,13 @@
+/*  QualtBot: A Qualtrics ChatBot
+
+# QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, with the conversation being 
+# saved as part of the survey. The chatbot can be customised based on study needs. It currently uses Google 
+# Gemini or OpenAI models. If there are elements that you are unable to customise that you need to, please 
+# contact me (https://profiles.ucl.ac.uk/57936-mark-warner).
+
+# If you use this tool in your research, please cite this repository using the citation instructions in the README.md
+*/
+
 body {
   margin: 0;
 }
