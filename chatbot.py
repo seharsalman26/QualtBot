@@ -58,48 +58,54 @@ st.markdown(f"""
         background-color: {bg_colour} !important;
     }}
 
-    /* 1. Remove default row background */
+    /* 1. Reset the outer container */
     [data-testid="stChatMessage"] {{
         background-color: transparent !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
     }}
 
-    /* 2. Style the Assistant Bubble */
+    /* 2. Target the Chat Bubbles (Both Bot and User) */
+    div[data-testid="stChatMessageContent"] {{
+        background-color: transparent !important; /* Reset child background */
+        border-radius: 20px !important;
+        padding: 12px 18px !important;
+        width: fit-content !important;
+        max-width: 85% !important;
+        margin-left: 0px !important;
+    }}
+
+    /* Apply specific colours based on the label */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
-        color: {text_colour} !important;
-        border-radius: 18px !important;
-        /* Padding: Top/Bottom 10px, Left/Right 16px */
-        padding: 10px 16px !important; 
-        margin-left: 5px !important;
-        width: fit-content !important;
-        max-width: 85% !important;
     }}
 
-    /* 3. Style the User Bubble */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
-        color: {text_colour} !important;
-        border-radius: 18px !important;
-        padding: 10px 16px !important;
-        margin-left: 5px !important;
-        width: fit-content !important;
-        max-width: 85% !important;
     }}
 
-    /* 4. Fix text alignment and wrapping */
+    /* 3. CRITICAL: Remove internal Streamlit spacing that pushes text down */
+    div[data-testid="stVerticalBlock"] {{
+        gap: 0px !important;
+    }}
+    
+    div[data-testid="stElementContainer"] {{
+        margin-bottom: 0px !important;
+    }}
+
+    /* 4. Ensure the text is properly anchored */
     div[data-testid="stChatMessageContent"] p {{
         color: {text_colour} !important;
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1.4 !important;
-        /* This prevents text from hitting the very bottom */
-        word-wrap: break-word !important;
+        font-size: 1rem !important;
     }}
-    
-    /* 5. Mobile Adjustments: Ensure the avatars and bubbles sit nicely */
+
+    /* 5. Keep avatars aligned with the top of the bubble */
     [data-testid="stChatMessageAvatarUser"], 
     [data-testid="stChatMessageAvatarAssistant"] {{
-        background-color: transparent !important;
+        margin-top: 5px !important;
     }}
     </style>
     """, unsafe_allow_html=True)
