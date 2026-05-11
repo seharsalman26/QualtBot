@@ -65,12 +65,20 @@ st.markdown(f"""
 
     /* TARGETING THE USER (The "Human" icon messages) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
-        background-color: {user_colour} !important;
+        background-color: {bot_color} !important;
+        color: {text_color} !important;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
     }}
 
     /* TARGETING THE BOT (The "Assistant" icon messages) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
-        background-color: {bot_colour} !important;
+        background-color: {user_color} !important;
+        color: {text_color} !important;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
     }}
     </style>
     """, unsafe_allow_html=True)
