@@ -58,27 +58,39 @@ st.markdown(f"""
         background-color: {bg_colour} !important;
     }}
 
-    /* The Chat Container */
+    /* 1. Remove the default Streamlit background-colour from the outer chat row */
     [data-testid="stChatMessage"] {{
-        color: {text_colour} !important;
+        background-color: transparent !important;
     }}
 
-    /* TARGETING THE USER (The "Human" icon messages) */
+    /* 2. Target the Bot Bubble (Assistant) */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
         color: {text_colour} !important;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 5px;
     }}
 
-    /* TARGETING THE BOT (The "Assistant" icon messages) */
+    /* 3. Target the User Bubble */
     div[data-testid="stChatMessageContent"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
         color: {text_colour} !important;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 5px;
+    }}
+
+    /* 4. Ensure the paragraph text inside also respects the text_colour */
+    div[data-testid="stChatMessageContent"] p {{
+        color: {text_colour} !important;
+        margin-bottom: 0px !important;
+    }}
+    
+    /* 5. Clean up the avatar backgrounds */
+    [data-testid="stChatMessageAvatarUser"], 
+    [data-testid="stChatMessageAvatarAssistant"] {{
+        background-color: transparent !important;
     }}
     </style>
     """, unsafe_allow_html=True)
