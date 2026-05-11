@@ -43,7 +43,7 @@ If asked how to deploy, select Use existing repo.
 In the Repository URL field, paste this exact link:
 https://github.com/markjwarner/QualtBot
 
-Leave the "Branch" as main and "Main file path" as app.py.
+Leave the "Branch" as main and "Main file path" as chatbot.py.
 
 Do not click Deploy yet! Proceed to Step 3.
 
