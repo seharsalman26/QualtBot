@@ -3,7 +3,7 @@ QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, w
 
 ## 📝 Citation
 
-If you use this tool in your research, please cite this repository using the following ACM format:
+If you use this tool in your research, please cite this repository using the below:
 
 > Mark Warner. 2026. *QualtBot: A Qualtrics Chatbot*. GitHub. Retrieved from https://github.com/markjwarner/QualtBot
 
