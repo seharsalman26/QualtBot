@@ -94,7 +94,7 @@ Create a set of embedded variables within the Survey Flow. Please use the config
 
 # ⚙️ Configuration Cheat Sheet
 
-You can easily alter how the chatbot behaves by changing the variables in the JavaScript above. Here is exactly what each option does:
+You can easily alter how the chatbot behaves by changing the variables either within the Javascript code, or in Qualtrics. Here is exactly what each option does. Currently there is no support to change the colour of the chat background or bubbles. If you need to do this, there is a way, but it is more involved. Please contact me for information. 
 
 | Variable | Description | Example Inputs |
 | :--- | :--- | :--- |
