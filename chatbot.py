@@ -64,13 +64,11 @@ st.markdown(f"""
     }}
 
     /* TARGETING THE USER (The "Human" icon messages) */
-    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]),
     [data-testid="stChatMessage"][aria-label="Chat message from user"] {{
         background-color: {user_colour} !important;
     }}
 
     /* TARGETING THE BOT (The "Assistant" icon messages) */
-    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]),
     [data-testid="stChatMessage"][aria-label="Chat message from assistant"] {{
         background-color: {bot_colour} !important;
     }}
