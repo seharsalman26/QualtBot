@@ -1,5 +1,5 @@
 # QualtBot: A Qualtrics Chatbot
-QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, with the conversation being saved as part of the survey. The chatbot can be customised based on study needs. It currently uses Google Gemini or OpenAI models. If there are elements that you are unable to customise that you need to, please contact me (https://profiles.ucl.ac.uk/57936-mark-warner). Here is a complete, step-by-step tutorial. It guides you through deploying your own secure instance of your QualBot and integrating it seamlessly into Qualtrics.
+QualtBot allows researchers to embed a chatbot into Qualtrics survey platform, with the conversation being saved as part of the survey. The chatbot can be customised based on study needs. It currently uses Google Gemini or OpenAI models. If there are elements that you are unable to customise that you need to, please contact me (https://profiles.ucl.ac.uk/57936-mark-warner). Here is a complete, step-by-step tutorial. It guides you through deploying your own secure instance of your QualtBot and integrating it seamlessly into Qualtrics.
 
 ## ⚠️ Streamlit app sleep
 Please note that Streamlit puts apps to sleep after inactivity for 24 hours (weekday), or 72 hours (Saturday through Monday). If you are running a study, ensure that the app is awake prior to study start. 
@@ -23,10 +23,10 @@ If you use this tool in your research, please cite this repository using the bel
 ```
 
 # 🤖 How to Embed QualtBot into Your Qualtrics Survey
-To ensure participant privacy and keep your API keys secure, you will create your own private copy of QualBot app using Steamlit, link your own API keys to it, and embed that private app directly into your survey. Participants will never see your keys, and all chat transcripts will be automatically saved to your Qualtrics dataset.
+To ensure participant privacy and keep your API keys secure, you will create your own private copy of QualtBot app using Steamlit, link your own API keys to it, and embed that private app directly into your survey. Participants will never see your keys, and all chat transcripts will be automatically saved to your Qualtrics dataset.
 
 ## Phase 1: Deploy Your Chatbot on Streamlit
-Streamlit (https://streamlit.io) is a free cloud platform for hosting Python web apps. You need to use it to host your specific instance of QualBot.
+Streamlit (https://streamlit.io) is a free cloud platform for hosting Python web apps. You need to use it to host your specific instance of QualtBot.
 
 ### Step 1: Create a Streamlit Account
 
