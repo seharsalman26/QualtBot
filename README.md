@@ -40,7 +40,7 @@ Once logged into Streamlit, click the New app button.
 
 If asked how to deploy, select Use existing repo. Note: You will need to fork the QualtBot repo and link to the forked version. 
 
-In the Repository URL field, paste this exact link:
+In the Repository URL field, paste the link to your forked QualtBot repository which should look something like the link below, but remember to replace YOU_GITHUB_USERNAME with your username:
 https://github.com/YOUR_GITHUB_USERNAME/QualtBot
 
 Leave the "Branch" as main and "Main file path" as chatbot.py.
