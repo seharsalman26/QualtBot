@@ -11,7 +11,7 @@ import streamlit as st
 import google.generativeai as genai
 from openai import OpenAI
 import json
-import streamlit.components.v1 as components removed as depreciated
+import streamlit.components.v1 as components
 import streamlit as st
 
 # Generate a unique timestamp so Streamlit is FORCED to re-render the HTML block
