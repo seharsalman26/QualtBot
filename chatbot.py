@@ -35,11 +35,11 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 
 
 # 1. READ PARAMETERS FROM THE URL
-dynamic_prompt = st.query_params.get("prompt", "You are a helpful assistant.")
+dynamic_prompt = st.secrets["PROMPT"]
 # Default to Google/Gemini if Qualtrics doesn't specify
 provider = st.query_params.get("provider", "google").lower()
 selected_model = st.query_params.get("model", "gemini-3.1-flash-lite-preview")
-initial_msg = st.query_params.get("initial_msg", "Hello! How can I help you today?")
+initial_msg = st.secrets["INITIAL_MESSAGE"]
 max_turns = int(st.query_params.get("max_turns", 10))
 user_icon = st.query_params.get("user_icon", "👤")
 bot_icon = st.query_params.get("bot_icon", "🤖")
